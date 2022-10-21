@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react'
+import Header from './components/Header'
+import SideNav from './components/SideNav'
+import { ScreenContext } from './contexts/Screensize'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { CollectionsLikes, Home, Logout, Profile, Radio, Videos, AlbumDetails, Collection, Likes } from './routes'
+import Player from './components/Player'
 
 function App() {
+
+  const { screenSize } = useContext(ScreenContext)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      {screenSize > 768 && <SideNav />}
+      <Routes>
+        <Route exact path='/' element={<Navigate to='home' />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='home/playlist/:Id' element={<AlbumDetails />} />
+        <Route path='/collectionslikes' element={<CollectionsLikes />} />
+        <Route path='/radio' element={<Radio />} />
+        <Route path='/videos' element={<Videos />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/logout' element={<Logout />} />
+      </Routes>
+      <Player />
+    </>
   );
 }
 
