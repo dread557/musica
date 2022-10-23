@@ -97,7 +97,7 @@ const Player = () => {
       {screenSize < 768 ? (
         <div className='flex justify-between bg-[#fff0] backdrop-blur-[15px] pt-2 pb-2 p-10 items-center border-[#ffffff1a] fixed bottom-0 w-full z-50 h-[120px]'>
           <div className='flex'>
-            <img className='w-[57px] h-[57px]' src={audioImg} alt='music' />
+            <img className='w-[57px] h-[57px]' src={audioImg || '../assets/music-1.png'} alt='music' />
             <span className='flex flex-col ml-2'>
               <h5 className='text-white font-bold'>{title}</h5>
               <p>{artist}</p>
@@ -120,7 +120,7 @@ const Player = () => {
         (
           <div className='flex justify-between bg-[#fff0] backdrop-blur-[15px] pt-2 pb-2 p-10 items-center border-[#ffffff1a] fixed bottom-0 w-full z-50'>
             <div className='flex'>
-              <img className='w-[57px] h-[57px]' src={audioImg} alt='music' />
+              <img className='w-[57px] h-[57px]' src={audioImg || '../assets/music-1.png'} alt='music' />
               <span className='flex flex-col ml-2'>
                 <h5 className='text-white font-bold'>{title}</h5>
                 <p>{artist}</p>
