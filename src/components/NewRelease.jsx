@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useGetNewSongsQuery } from '../services/songsApi'
+import { SongContext } from '../contexts/SongContext'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -8,6 +9,8 @@ import 'swiper/css';
 
 const NewRelease = () => {
     const { data } = useGetNewSongsQuery()
+    const { setSrc } = useContext(SongContext)
+
     return (
         <div className='p-10 pt-0 md:pl-16 md:ml-9'>
             <h1 className='text-white mb-5 font-bold text-2xl'>New Releases</h1>
@@ -29,14 +32,18 @@ const NewRelease = () => {
                     },
                 }}
             >
-                {data?.map((item, index) => (
-                    <SwiperSlide>
-                        <div key={index} className=''>
+                {data?.map((item, index) => {
+                    const changeSrc = () => {
+                        setSrc(item.audio)
+                    }
+                    return (<SwiperSlide>
+                        <div key={index} className='cursor-pointer' onClick={() => changeSrc()}>
                             <img className='h-[150px] rounded-[25px]' src={item.cover} alt={item.title} />
                             <p>{item.title}</p>
                             <p>{item.artist}</p>
                         </div>
-                    </SwiperSlide>))}
+                    </SwiperSlide>)
+                })}
             </Swiper>
         </div>
     )

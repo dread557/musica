@@ -4,7 +4,7 @@ import { SongContext } from '../contexts/SongContext'
 
 const Player = () => {
   const { screenSize } = useContext(ScreenContext)
-  const { src, setSrc } = useContext(SongContext)
+  const { src } = useContext(SongContext)
   const [percentage, setPercentage] = useState(0)
   const [position, setPosition] = useState(0)
   const [marginLeft, setMarginLeft] = useState(0)
@@ -87,8 +87,13 @@ const Player = () => {
     setPosition(percentage)
   }, [percentage])
 
+  useEffect(() => {
+    // const audio = audioRef?.current
+    // audio.play() 
+    play()
+  }, [src])
   return (
-    <div className=''>
+    <div className='mt-[100px]'>
       {screenSize < 768 ? (
         <div className='flex justify-between bg-[#fff0] backdrop-blur-[15px] pt-2 pb-2 p-10 items-center border-[#ffffff1a] fixed bottom-0 w-full z-50 h-[120px]'>
           <div className='flex'>
@@ -139,7 +144,7 @@ const Player = () => {
                   <ion-icon name="repeat"></ion-icon>
                 </button>
               </div>
-              <div className='slider-container' >
+              <div className='slider-container w-[600px]' >
                 <div className='progress-bar-cover' style={{ width: `${progressBarWidth}px` }}></div>
                 <div className='thumb' ref={thumbRef} style={{ left: `${position}%`, marginLeft: `${marginLeft}px` }}></div>
                 <input type='range' ref={rangeRef} step='0.01' value={position} className='range' onChange={onChangeTime} />

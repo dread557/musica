@@ -2,7 +2,9 @@ import React from 'react'
 
 const Likes = () => {
     return (
-        <div>Likes</div>
+        <div>
+            <p className='mt-4'> You have no Likes</p>
+        </div>
     )
 }
 

@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { ScreenContext } from '../contexts/Screensize'
 import { useGetPlaylistsQuery } from '../services/songsApi'
+import { SongContext } from '../contexts/SongContext'
 
 const AlbumDetails = () => {
     const { screenSize } = useContext(ScreenContext)
     const { data } = useGetPlaylistsQuery()
+    const { setSrc } = useContext(SongContext)
     let { Id } = useParams()
     let id = Number(Id.charAt(Id.length - 1) - 1)
     const playlist = data[id]
@@ -31,26 +33,30 @@ const AlbumDetails = () => {
                 </div>
             </div>
             <div className='flex flex-col gap-y-2 mb-12'>
-                {playlist.files?.map((track) => (
-                    <Link to='' key={track.id} className='grid grid-p bg-[#33373B5E] p-2 rounded-2xl items-center justify-between'>
-                        <span className='flex gap-5 items-center'>
-                            <img className='w-[39px] h-[39px] rounded-lg' src={playlist?.cover} alt='' />
-                            {screenSize > 768 && <ion-icon name="heart-outline"></ion-icon>}
-                        </span>
-                        <div className='flex justify-between md:w-full'>
-                            <span className='flex flex-col md:flex-row justify-between md:w-[35%]'>
-                                <p>{track.title}</p>
-                                <p className=''>Single</p>
+                {playlist.files?.map((track) => {
+                    const changeSrc = () => {
+                        setSrc(track.audio)
+                    }
+                    return (
+                        <div onClick={() => changeSrc()} key={track.id} className='grid grid-p bg-[#33373B5E] p-2 cursor-pointer rounded-2xl items-center justify-between'>
+                            <span className='flex gap-5 items-center'>
+                                <img className='w-[39px] h-[39px] rounded-lg' src={playlist?.cover} alt='' />
+                                {screenSize > 768 && <ion-icon name="heart-outline"></ion-icon>}
                             </span>
-                            <span className='flex flex-col-reverse md:flex-row justify-between justify-self-end items-center md:w-[35%]'>
-                                <p className=''>3:05</p>
-                                <span className='text-[#FACD66]'>
-                                    <ion-icon name="ellipsis-vertical"></ion-icon>
+                            <div className='flex justify-between md:w-full'>
+                                <span className='flex flex-col md:flex-row justify-between md:w-[35%]'>
+                                    <p>{track.title}</p>
+                                    <p className=''>Single</p>
                                 </span>
-                            </span>
-                        </div>
-                    </Link>
-                ))}
+                                <span className='flex flex-col-reverse md:flex-row justify-between justify-self-end items-center md:w-[35%]'>
+                                    <p className=''>3:05</p>
+                                    <span className='text-[#FACD66]'>
+                                        <ion-icon name="ellipsis-vertical"></ion-icon>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>)
+                })}
             </div>
         </div>
     )
