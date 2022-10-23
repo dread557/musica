@@ -15,13 +15,7 @@ const Player = () => {
   const [volumeBar, setVolumeBar] = useState(0)
   const [mute, setMute] = useState(false)
 
-  // useEffect(() => {
-  //   newSongs?.forEach(song => {
-  //     setTitle(song.title)
-  //     setArtist(song.artist)
-  //     setAudioImage(song.cover)
-  //   });
-  // }, [newSongs, setArtist, setTitle, setAudioImage, title, artist, audioImg])
+
   const onChangeTime = (e) => {
     const audio = audioRef.current
     audio.currentTime = (audio.duration / 100) * e.target.value
@@ -103,10 +97,10 @@ const Player = () => {
       {screenSize < 768 ? (
         <div className='flex justify-between bg-[#fff0] backdrop-blur-[15px] pt-2 pb-2 p-10 items-center border-[#ffffff1a] fixed bottom-0 w-full z-50 h-[120px]'>
           <div className='flex'>
-            <img className='w-[57px] h-[57px]' src='/../assets/music-2.png' alt='music' />
+            <img className='w-[57px] h-[57px]' src={audioImg} alt='music' />
             <span className='flex flex-col ml-2'>
-              <h5 className='text-white font-bold'>Seasons in</h5>
-              <p>James</p>
+              <h5 className='text-white font-bold'>{title}</h5>
+              <p>{artist}</p>
             </span>
           </div>
           <div className='flex gap-5'>
