@@ -9,7 +9,7 @@ import 'swiper/css';
 
 const NewRelease = () => {
     const { data } = useGetNewSongsQuery()
-    const { setSrc } = useContext(SongContext)
+    const { setSrc, setAudioImage, setArtist, setTitle } = useContext(SongContext)
 
     return (
         <div className='p-10 pt-0 md:pl-16 md:ml-9'>
@@ -33,11 +33,14 @@ const NewRelease = () => {
                 }}
             >
                 {data?.map((item, index) => {
-                    const changeSrc = () => {
+                    const changeAttrb = () => {
                         setSrc(item.audio)
+                        setTitle(item.title)
+                        setArtist(item.artist)
+                        setAudioImage(item.cover)
                     }
                     return (<SwiperSlide>
-                        <div key={index} className='cursor-pointer' onClick={() => changeSrc()}>
+                        <div key={index} className='cursor-pointer' onClick={() => changeAttrb()}>
                             <img className='h-[150px] rounded-[25px]' src={item.cover} alt={item.title} />
                             <p>{item.title}</p>
                             <p>{item.artist}</p>

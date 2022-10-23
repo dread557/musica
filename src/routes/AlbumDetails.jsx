@@ -7,7 +7,7 @@ import { SongContext } from '../contexts/SongContext'
 const AlbumDetails = () => {
     const { screenSize } = useContext(ScreenContext)
     const { data } = useGetPlaylistsQuery()
-    const { setSrc } = useContext(SongContext)
+    const { setSrc, setAudioImage, setArtist, setTitle } = useContext(SongContext)
     let { Id } = useParams()
     let id = Number(Id.charAt(Id.length - 1) - 1)
     const playlist = data[id]
@@ -34,11 +34,14 @@ const AlbumDetails = () => {
             </div>
             <div className='flex flex-col gap-y-2 mb-12'>
                 {playlist.files?.map((track) => {
-                    const changeSrc = () => {
+                    const changeAttrb = () => {
                         setSrc(track.audio)
+                        setTitle(track.title)
+                        setArtist(track.artist)
+                        setAudioImage(track.cover)
                     }
                     return (
-                        <div onClick={() => changeSrc()} key={track.id} className='grid grid-p bg-[#33373B5E] p-2 cursor-pointer rounded-2xl items-center justify-between'>
+                        <div onClick={() => changeAttrb()} key={track.id} className='grid grid-p bg-[#33373B5E] p-2 cursor-pointer rounded-2xl items-center justify-between'>
                             <span className='flex gap-5 items-center'>
                                 <img className='w-[39px] h-[39px] rounded-lg' src={playlist?.cover} alt='' />
                                 {screenSize > 768 && <ion-icon name="heart-outline"></ion-icon>}
