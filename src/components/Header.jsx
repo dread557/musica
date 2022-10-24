@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 const Header = () => {
 
     const { activeMenu, setActiveMenu } = useContext(ScreenContext)
+
     return (
         <div className='flex justify-between items-center md:justify-start p-10 pt-8'>
             <Link to='/home'>
@@ -18,10 +19,7 @@ const Header = () => {
             <div className=' text-2xl md:hidden cursor-pointer relative z-20' onClick={() => setActiveMenu(!activeMenu)}>
                 <ion-icon name={activeMenu ? 'close' : 'menu'}></ion-icon>
             </div>
-            {activeMenu && (
-                <Navbar />
-            )}
-
+            {activeMenu && <Navbar />}
         </div>
     )
 }

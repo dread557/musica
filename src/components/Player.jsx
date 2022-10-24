@@ -89,8 +89,8 @@ const Player = () => {
   }, [percentage])
 
   useEffect(() => {
-    const audio = audioRef?.current
-    audio.play()
+    // const audio = audioRef?.current
+    play()
   }, [src])
   return (
     <div className='mt-[100px]'>
@@ -161,7 +161,6 @@ const Player = () => {
               </button>
               <div className='slider-container' >
                 <div className='progress-bar-cover' style={{ width: `${volumeBar}px` }}></div>
-                {/* <div className='thumb' ref={thumbRef2} ></div> */}
                 <input type="range" ref={rangeRef2} value={position} className="volume" onChange={onChangeVol} />
               </div>
             </div>
