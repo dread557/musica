@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { ScreenContext } from '../contexts/Screensize'
 import { useGetPlaylistsQuery } from '../services/songsApi'
 import { SongContext } from '../contexts/SongContext'
+import { motion } from 'framer-motion'
 
 const AlbumDetails = () => {
     const { screenSize } = useContext(ScreenContext)
@@ -12,7 +13,12 @@ const AlbumDetails = () => {
     let id = Number(Id.charAt(Id.length - 1) - 1)
     const playlist = data[id]
     return (
-        <div className='p-10 pt-0 md:pl-16 md:ml-9 '>
+        <motion.div className='p-10 pt-0 md:pl-16 md:ml-9'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+        >
             <div className='flex flex-col md:flex-row gap-x-5 md:items-end mb-12'>
                 <img className='max-w-[284px] rounded-[35px]' src={playlist?.cover} alt={playlist?.title} />
                 <div className=' flex flex-col space-y-4 '>
@@ -61,7 +67,7 @@ const AlbumDetails = () => {
                         </div>)
                 })}
             </div>
-        </div>
+        </motion.div>
     )
 }
 

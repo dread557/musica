@@ -109,6 +109,15 @@ body {
   grid-template-columns: 80px 1fr;
 }
 
+.overlay {
+  background-size: 110%;
+  transition: background-size .3s ease-in 
+}
+
+.overlay:hover {
+  background-size: 160%;
+}
+
 .overlay:before {
   content: "";
   position: absolute;
