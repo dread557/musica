@@ -16,7 +16,7 @@ body {
 
 .slider-container {
   position: relative;
-  width: 100%;
+  max-width: 600px;
 }
 
 .range {
@@ -93,7 +93,7 @@ body {
 /* Custom Progress Bar */
 .progress-bar-cover {
   background-color: #FACD66;
-  width: 50%;
+  /* width: 50%; */
   height: var(--progress-bar-height);
   display: block;
   position: absolute;

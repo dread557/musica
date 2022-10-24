@@ -3,7 +3,7 @@ import React, { useState, createContext } from 'react'
 export const SongContext = createContext()
 
 const SongContextProvider = (props) => {
-    const [src, setSrc] = useState("")
+    const [src, setSrc] = useState("https://musica-api.up.railway.app/audio/audio_1.mp3")
     const [audioImg, setAudioImage] = useState("")
     const [artist, setArtist] = useState("")
     const [title, setTitle] = useState("")

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
 import { ScreenContext } from '../contexts/Screensize'
 import { SongContext } from '../contexts/SongContext'
+import { ColorRing } from 'react-loader-spinner'
 
 const Player = () => {
   const { screenSize } = useContext(ScreenContext)
@@ -89,8 +90,8 @@ const Player = () => {
   }, [percentage])
 
   useEffect(() => {
-    // const audio = audioRef?.current
-    play()
+    const audio = audioRef?.current
+    audio.play()
   }, [src])
   return (
     <div className='mt-[100px]'>
@@ -104,8 +105,20 @@ const Player = () => {
             </span>
           </div>
           <div className='flex gap-5'>
-            <button onClick={play} className='text-[30px] text-[#FACD66]'>
-              <ion-icon name={isPlaying ? "pause-circle-sharp" : "play-circle"}></ion-icon>
+            <button className='text-[30px] text-[#FACD66]'>
+              {audioRef?.current?.readyState <= 2 ? (
+                <ColorRing
+                  visible={true}
+                  height="24"
+                  width="24"
+                  ariaLabel="blocks-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="blocks-wrapper"
+                  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                />
+              ) : (
+                <ion-icon onClick={play} name={isPlaying ? "pause-circle-sharp" : "play-circle"}></ion-icon>
+              )}
             </button>
             <button className='text-[22px] text-white'>
               <ion-icon name="play-skip-forward-sharp"></ion-icon>
@@ -134,8 +147,20 @@ const Player = () => {
                 <button className='text-[22px] text-white'>
                   <ion-icon name="play-skip-back"></ion-icon>
                 </button>
-                <button onClick={play} className='text-[30px] text-[#FACD66]'>
-                  <ion-icon name={isPlaying ? "pause-circle-sharp" : "play-circle"}></ion-icon>
+                <button className='text-[30px] text-[#FACD66]'>
+                  {audioRef?.current?.readyState <= 2 ? (
+                    <ColorRing
+                      visible={true}
+                      height="24"
+                      width="24"
+                      ariaLabel="blocks-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="blocks-wrapper"
+                      colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                    />
+                  ) : (
+                    <ion-icon onClick={play} name={isPlaying ? "pause-circle-sharp" : "play-circle"}></ion-icon>
+                  )}
                 </button>
                 <button className='text-[22px] text-white'>
                   <ion-icon name="play-skip-forward-sharp"></ion-icon>
