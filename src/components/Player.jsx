@@ -5,7 +5,7 @@ import { ColorRing } from 'react-loader-spinner'
 
 const Player = () => {
   const { screenSize } = useContext(ScreenContext)
-  const { src, audioImg, artist, title } = useContext(SongContext)
+  const { src, setSrc, audioImg, setAudioImage, artist, setArtist, title, setTitle, songsArray, currSongIndex, setCurrSongIndex } = useContext(SongContext)
   const [percentage, setPercentage] = useState(0)
   const [position, setPosition] = useState(0)
   const [marginLeft, setMarginLeft] = useState(0)
@@ -16,6 +16,12 @@ const Player = () => {
   const [volumeBar, setVolumeBar] = useState(0)
   const [mute, setMute] = useState(false)
 
+
+  const rangeRef = useRef()
+  const thumbRef = useRef()
+  const rangeRef2 = useRef()
+  const thumbRef2 = useRef()
+  const audioRef = useRef()
 
   const onChangeTime = (e) => {
     const audio = audioRef.current
@@ -61,11 +67,26 @@ const Player = () => {
     // setCurrentTime(time.toFixed(2))
   }
 
-  const rangeRef = useRef()
-  const thumbRef = useRef()
-  const rangeRef2 = useRef()
-  const thumbRef2 = useRef()
-  const audioRef = useRef()
+  const next = () => {
+    const arr = songsArray
+    const nextSongIndex = currSongIndex + 1
+    setSrc((arr[nextSongIndex]).audio)
+    setArtist((arr[nextSongIndex]).artist)
+    setAudioImage((arr[nextSongIndex]).cover)
+    setTitle((arr[nextSongIndex]).title)
+    setCurrSongIndex(nextSongIndex)
+  }
+
+  const prev = () => {
+    const arr = songsArray
+    const prevSongIndex = currSongIndex - 1
+    setSrc((arr[prevSongIndex]).audio)
+    setArtist((arr[prevSongIndex]).artist)
+    setAudioImage((arr[prevSongIndex]).cover)
+    setTitle((arr[prevSongIndex]).title)
+    setCurrSongIndex(prevSongIndex)
+  }
+
 
   useEffect(() => {
     const rangeWidth = rangeRef?.current?.getBoundingClientRect().width
@@ -120,7 +141,7 @@ const Player = () => {
                 <ion-icon onClick={play} name={isPlaying ? "pause-circle-sharp" : "play-circle"}></ion-icon>
               )}
             </button>
-            <button className='text-[22px] text-white'>
+            <button className='text-[22px] text-white' onClick={() => next()}>
               <ion-icon name="play-skip-forward-sharp"></ion-icon>
             </button>
             <audio
@@ -144,7 +165,7 @@ const Player = () => {
                 <button className='text-[22px] text-white'>
                   <ion-icon name="shuffle"></ion-icon>
                 </button>
-                <button className='text-[22px] text-white'>
+                <button className='text-[22px] text-white' onClick={() => prev()}>
                   <ion-icon name="play-skip-back"></ion-icon>
                 </button>
                 <button className='text-[30px] text-[#FACD66]'>
@@ -162,7 +183,7 @@ const Player = () => {
                     <ion-icon onClick={play} name={isPlaying ? "pause-circle-sharp" : "play-circle"}></ion-icon>
                   )}
                 </button>
-                <button className='text-[22px] text-white'>
+                <button className='text-[22px] text-white' onClick={() => next()}>
                   <ion-icon name="play-skip-forward-sharp"></ion-icon>
                 </button>
                 <button className='text-[22px] text-white'>
