@@ -27,7 +27,7 @@ const HeroSection = () => {
                 {screenSize > 768 && <img src='../assets/eric.png' alt='hero' />}
 
             </div>
-            <div className='md:pl-[22px] md:w-[30%]'>
+            <div className='md:pl-[22px] md:w-[40%]'>
                 <h1 className='text-2xl font-bold text-white mt-5 md:mt-0'>Top charts</h1>
                 <div className='flex md:flex-col'>
                     {screenSize < 768 ? (
@@ -42,8 +42,8 @@ const HeroSection = () => {
                                     return <SwiperSlide>
                                         <Link to={`playlist/:${item.id}`} className='flex justify-between gap-3 mb-3 h-[200px] bg-[#1A1E1F] p-3 rounded-[20px]' key={index}>
                                             <div className='flex flex-col'>
-                                                <img className='h-[63px] w-[63px] rounded-[10px]' src={item.cover} alt="item.name" />
-                                                <span className='flex flex-col space-y-1 ml-2'>
+                                                <img className='h-[63px] w-[63px] rounded-[10px] mb-3 md:mb-0' src={item.cover} alt="item.name" />
+                                                <span className='flex flex-col space-y-3 md:ml-2'>
                                                     <h6 className='text-[14px] text-white capitalize'>{item?.title}</h6>
                                                     <p className='text-xs capitalize'>{item?.title}</p>
                                                     <p className='text-xs text-white'>1:02:20</p>

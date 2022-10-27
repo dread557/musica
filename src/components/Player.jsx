@@ -11,11 +11,10 @@ const Player = () => {
   const [marginLeft, setMarginLeft] = useState(0)
   const [progressBarWidth, setProgressBarWidth] = useState(0)
   const [isPlaying, setIsplaying] = useState(false)
-  // const [duration, setDuration] = useState(0)
-  // const [currentTime, setCurrentTime] = useState(0)
   const [volumeBar, setVolumeBar] = useState(0)
   const [mute, setMute] = useState(false)
-
+  // const [duration, setDuration] = useState(0)
+  // const [currentTime, setCurrentTime] = useState(0)
 
   const rangeRef = useRef()
   const thumbRef = useRef()
@@ -87,6 +86,21 @@ const Player = () => {
     setCurrSongIndex(prevSongIndex)
   }
 
+  // const repeat = () => {
+  //   const arr = songsArray
+  //   setSrc((arr[currSongIndex]).audio)
+  // }
+
+  // const shuffle = () => {
+  //   const arr = songsArray
+
+  //   setSrc((arr[prevSongIndex]).audio)
+  //   setArtist((arr[prevSongIndex]).artist)
+  //   setAudioImage((arr[prevSongIndex]).cover)
+  //   setTitle((arr[prevSongIndex]).title)
+  //   setCurrSongIndex(prevSongIndex)
+  // }
+
 
   useEffect(() => {
     const rangeWidth = rangeRef?.current?.getBoundingClientRect().width
@@ -113,6 +127,7 @@ const Player = () => {
   useEffect(() => {
     const audio = audioRef?.current
     audio.play()
+
   }, [src])
   return (
     <div className='mt-[100px]'>
