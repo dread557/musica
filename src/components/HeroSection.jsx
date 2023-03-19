@@ -50,7 +50,7 @@ const HeroSection = () => {
                                                 </span>
                                             </div>
                                             <span className='rounded-[50%] p-[2px] w-[30px] h-[30px] text-[#FACD66] border border-slate-600 flex items-center justify-center'>
-                                                <ion-icon name="heart-outline" className=''></ion-icon>
+                                                <ion-icon className='' name="heart-outline" ></ion-icon>
                                             </span>
                                         </Link>
                                     </SwiperSlide>
