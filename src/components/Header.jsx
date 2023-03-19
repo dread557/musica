@@ -16,7 +16,7 @@ const Header = () => {
                 <ion-icon name="search-outline"></ion-icon>
                 <input className='bg-transparent outline-none' type='text' placeholder='Search' />
             </div>
-            <div className=' text-2xl md:hidden cursor-pointer relative z-20' onClick={() => setActiveMenu(!activeMenu)}>
+            <div className=' text-2xl md:hidden cursor-pointer relative z-50' onClick={() => setActiveMenu(!activeMenu)}>
                 <ion-icon name={activeMenu ? 'close' : 'menu'}></ion-icon>
             </div>
             {activeMenu && <Navbar />}

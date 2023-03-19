@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const baseUrl = 'https://musica-api.up.railway.app'
+const baseUrl = 'https://musica-api-ntlk.onrender.com'
 
 const createRequest = (url) => (url)
 
